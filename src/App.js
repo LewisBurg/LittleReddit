@@ -20,7 +20,7 @@ function App() {
       </div>
       
       <div className='postdetail'>
-      <PostDetail post={{title: "Post 1", author: "User 1", subreddit: "r/subreddit1", content: "This is the content of post 1"}} />  
+      <PostDetail/>  
       </div>
       </section>  
         
