@@ -1,0 +1,12 @@
+.search-bar {
+    border-radius: 20px;
+    padding: 10px;
+    border: 2px solid black;
+}
+
+.search-button {
+    border-radius: 20px;
+    padding: 10px;
+    margin-left: 10px;
+    border: 2px solid black;
+}

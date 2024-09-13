@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import api from '../api';
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (subredditName) => {
-  const response = await axios.get(`https://www.reddit.com/r/${subredditName}.json`);
+export const fetchPosts = createAsyncThunk('subreddits/fetchSubreddits', async () => {
+  const response = await api.get('/subreddits.json'); // Use the api instance to make the request
   return response.data.data.children.map(child => child.data);
 });
