@@ -1,26 +1,36 @@
-import React from "react";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSubreddits } from '../actions/subredditActions'; // Make sure the path is correct
 
-function SubRedditList() {
-  const mockSubReddits = [
-    { id: 1, name: "r/subreddit1" },
-    { id: 2, name: "r/subreddit2" },
-    { id: 3, name: "r/subreddit3" },
-    { id: 4, name: "r/subreddit4" },
-    { id: 5, name: "r/subreddit5" },
-    { id: 6, name: "r/subreddit6" },
-  ];
+function SubRedditList({ subredditName }) {
+  const dispatch = useDispatch();
+  const { posts, loading, error } = useSelector((state) => state.posts); 
+
+  useEffect(() => {
+    dispatch(fetchSubreddits(subredditName)); 
+  }, [subredditName, dispatch]); 
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
-    
-    <ul>
-        {mockSubReddits.map((subreddit) => (
-            <li key={subreddit.id}>
-                <h3>{subreddit.name}</h3>
-            </li>
+    <div>
+      <h2>Posts from {subredditName}</h2>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <h3>{post.title}</h3>
+            {/* Add more post details as needed */}
+          </li>
         ))}
-    </ul>
+      </ul>
+    </div>
   );
-
 }
 
 export default SubRedditList;
